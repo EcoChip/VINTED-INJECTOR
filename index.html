@@ -2,25 +2,203 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vinted Pro Seller - Planes</title>
-        <link rel="stylesheet" href="./style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- VARIABLES GLOBALES Y RESET --- */
+        :root {
+            --primary-color: #0f172a;
+            --accent-color: #0077ff;
+            --accent-hover: #005ecb;
+            --bg-light: #f8fafc;
+            --text-gray: #64748b;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--primary-color);
+            background-color: white;
+        }
+
+        /* --- UTILIDADES --- */
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            font-weight: 800;
+        }
+
+        /* --- BOTONES --- */
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: white;
+            box-shadow: 0 4px 14px rgba(0, 119, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 119, 255, 0.4);
+        }
+
+        .btn-block {
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* --- NAVBAR --- */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+        }
+
+        .logo { font-size: 1.5rem; font-weight: 800; }
+        
+        .highlight {
+            color: var(--accent-color);
+            background: linear-gradient(90deg, var(--accent-color), #00c6ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* --- PRICING SECTION (Tu tarjeta azul) --- */
+        .pricing-section {
+            padding: 5rem 0;
+            background-color: var(--bg-light);
+            min-height: 80vh; /* Para que ocupe casi toda la pantalla */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .pricing-wrapper {
+            display: flex;
+            justify-content: center;
+        }
+
+        .pricing-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 24px;
+            width: 100%;
+            max-width: 450px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            position: relative;
+            border: 2px solid var(--accent-color); /* Borde azul activado */
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--accent-color);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 800;
+        }
+
+        .plan-name { font-size: 1.5rem; font-weight: 700; text-align: center; margin-bottom: 1rem;}
+
+        .price {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        .period {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            font-weight: 400;
+        }
+
+        .features-list {
+            list-style: none;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .features-list li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
+        }
+
+        .cancel-anytime {
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            margin-top: 1rem;
+        }
+    </style>
 </head>
 <body>
-    <nav>
-        <h1>Vinted<span>Pro</span></h1>
+
+    <nav class="navbar container">
+        <div class="logo">Vinted<span class="highlight">Pro</span></div>
     </nav>
 
-    <section class="pricing">
-        <div class="card">
-            <h2>Plan Mensual</h2>
-            <p class="price">9.99€<span>/mes</span></p>
-            <ul>
-                <li>✨ Optimización ilimitada</li>
-                <li>📸 Análisis de fotos (Próximamente)</li>
-                <li>🚀 Soporte 24/7</li>
-            </ul>
-            <button id="checkout-button">CONTRATAR AHORA</button>
+    <section class="pricing-section">
+        <div class="container">
+            <h2 class="section-title">Mejora tus ventas hoy</h2>
+            
+            <div class="pricing-wrapper">
+                <div class="pricing-card">
+                    <div class="popular-badge">MÁS POPULAR</div>
+                    
+                    <h3 class="plan-name">Plan Mensual</h3>
+                    <div class="price">9.99€<span class="period">/mes</span></div>
+                    
+                    <ul class="features-list">
+                        <li>✅ Optimización ilimitada</li>
+                        <li>📸 Análisis de fotos (Próximamente)</li>
+                        <li>🚀 Soporte 24/7</li>
+                    </ul>
+
+                    <button id="checkout-button" class="btn btn-primary btn-block">CONTRATAR AHORA</button>
+                    <p class="cancel-anytime">Cancela cuando quieras.</p>
+                </div>
+            </div>
         </div>
     </section>
+
+    <script>
+        document.getElementById('checkout-button').addEventListener('click', () => {
+            // ¡IMPORTANTE! Cambia esto por tu enlace real de Stripe
+            window.location.href = 'https://buy.stripe.com/TU_ENLACE_AQUI'; 
+        });
+    </script>
+
 </body>
 </html>
