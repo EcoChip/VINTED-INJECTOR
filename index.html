@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="icon" type="image/png" href="Gemini_Generated_Image_9mjiby9mjiby9mji.jpg">
     <title>Vinted Injector - Multiplica tus ventas</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet">
     
@@ -11,17 +11,14 @@
         /* --- VARIABLES & CONFIGURACIÓN --- */
         :root {
             --primary: #0f172a;
-            --accent: #0077ff;
-            --accent-glow: rgba(0, 119, 255, 0.5);
+            --accent: #008cff; /* Azul ajustado a tu nuevo logo */
+            --accent-glow: rgba(0, 140, 255, 0.4);
             --bg-light: #f1f5f9;
             --success: #10b981;
             --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
-        html {
-            scroll-behavior: smooth; /* Desplazamiento suave nativo */
-        }
-
+        html { scroll-behavior: smooth; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
@@ -31,7 +28,6 @@
             overflow-x: hidden;
         }
 
-        /* --- BOTONES Y UTILIDADES --- */
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
         
         .btn {
@@ -57,7 +53,6 @@
             box-shadow: 0 20px 30px -10px var(--accent-glow);
         }
 
-        /* --- BOTÓN FLOTANTE (Magic Button) --- */
         #floating-cta {
             position: fixed;
             bottom: 30px;
@@ -69,13 +64,13 @@
             color: white;
             font-weight: bold;
             box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            opacity: 0; /* Empieza invisible */
+            opacity: 0;
             transform: translateY(50px);
             transition: var(--transition);
-            pointer-events: none; /* No clickeable si invisible */
+            pointer-events: none;
+            text-decoration: none;
         }
 
-        /* Clase para mostrar el botón */
         #floating-cta.visible {
             opacity: 1;
             transform: translateY(0);
@@ -104,43 +99,18 @@
 
         .hero p { font-size: 1.3rem; color: #64748b; max-width: 600px; margin: 0 auto 40px; }
 
-        /* --- GRÁFICA ANIMADA --- */
+        /* --- GRÁFICA INTERACTIVA --- */
         .stats-section { padding: 60px 0; background: #fff; }
-        .chart-container {
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-            height: 300px;
-            gap: 40px;
-            margin-top: 40px;
-        }
-        
-        .bar-group { text-align: center; width: 120px; position: relative; }
-        .bar {
-            width: 100%;
-            border-radius: 15px 15px 0 0;
-            transition: height 1.5s cubic-bezier(0.22, 1, 0.36, 1);
-            height: 0; /* Empieza en 0 para animar */
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            padding-bottom: 10px;
-            font-weight: bold;
-            color: white;
-        }
-        
-        .bar-old { background: #cbd5e1; height: 30%; } /* Altura fija visual */
-        
-        /* Esta es la barra que crecerá */
-        .bar-new { 
-            background: linear-gradient(to top, var(--accent), #60a5fa); 
-            box-shadow: 0 0 20px var(--accent-glow);
+        .chart-wrapper {
+            max-width: 600px;
+            margin: 40px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
 
-        /* Animación de entrada */
-        .animate-chart .bar-new { height: 85% !important; }
-
-        /* --- CÓMO FUNCIONA (STEPS) --- */
+        /* --- STEPS --- */
         .steps { padding: 80px 0; background: var(--bg-light); }
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
         
@@ -153,7 +123,6 @@
         .step-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.05); }
         .icon { font-size: 3rem; margin-bottom: 20px; display: block; }
 
-        /* --- ROADMAP Y PLATAFORMAS --- */
         .info-grid { padding: 80px 0; display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
         @media (max-width: 768px) { .info-grid { grid-template-columns: 1fr; } }
         
@@ -165,10 +134,10 @@
             border-radius: 10px;
             border: 1px solid #e2e8f0;
             font-weight: bold;
-            color: #09b1ba; /* Vinted color */
+            color: #09b1ba;
         }
 
-        /* --- PRICING (ZONA DE PAGO) --- */
+        /* --- PRICING --- */
         #pricing {
             padding: 100px 0;
             background: linear-gradient(to bottom, white, #f0f9ff);
@@ -213,7 +182,7 @@
 <body>
 
     <nav class="container">
-        <div class="logo">Vinted<span>Pro</span></div>
+        <div class="logo">Vinted<span>Injector</span></div>
         <a href="https://vinted.es" target="_blank" style="text-decoration:none; color: var(--primary); font-weight:600;">Ir a Vinted ↗</a>
     </nav>
 
@@ -228,19 +197,8 @@
             <h2>Resultados Reales</h2>
             <p>Promedio de visitas en las primeras 24h</p>
             
-            <div class="chart-container" id="salesChart">
-                <div class="bar-group">
-                    <div class="bar bar-old" style="height: 30%;">
-                        <span>30 visitas</span>
-                    </div>
-                    <p style="margin-top:10px; font-weight:600;">Manual</p>
-                </div>
-                <div class="bar-group">
-                    <div class="bar bar-new">
-                        <span>+150 visitas</span>
-                    </div>
-                    <p style="margin-top:10px; font-weight:bold; color:var(--accent);">Con IA Pro</p>
-                </div>
+            <div class="chart-wrapper">
+                <canvas id="vintedChart"></canvas>
             </div>
         </div>
     </section>
@@ -290,7 +248,7 @@
             <h2 style="margin-bottom: 20px;">Invierte en tu armario</h2>
             <div class="pricing-card">
                 <div class="popular-tag">OFERTA LANZAMIENTO</div>
-                <h3>Plan Pro Mensual</h3>
+                <h3>Plan Injector Mensual</h3>
                 
                 <div class="price-tag">
                     <span class="currency-symbol">€</span>7.59<span class="period">/mes</span>
@@ -312,109 +270,90 @@
     </section>
 
     <footer style="text-align:center; padding: 40px; color: #94a3b8; font-size: 0.9rem;">
-        <p>&copy; 2024 Vinted Pro Tools. No afiliado oficialmente a Vinted.</p>
+        <p>&copy; 2026 Vinted Injector Tools. No afiliado oficialmente a Vinted.</p>
     </footer>
 
     <a href="javascript:scrollToPricing()" id="floating-cta">
-        Contratar Plan Pro 🚀
+        Contratar Plan Injector 🚀
     </a>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         // 1. CONFIGURACIÓN DE STRIPE
         document.getElementById('stripe-button').addEventListener('click', () => {
-            // ¡PON AQUÍ TU ENLACE DE STRIPE!
             window.location.href = 'https://buy.stripe.com/PON_TU_LINK_AQUI';
         });
 
-        // 2. DETECCIÓN DE MONEDA (Automática)
+        // 2. DETECCIÓN DE MONEDA
         const userLang = navigator.language || navigator.userLanguage;
         const currencySymbols = document.querySelectorAll('.currency-symbol');
-        
         if (userLang.includes('en') || userLang.includes('US')) {
-            // Si el usuario parece ser de USA/UK, cambiamos a $
             currencySymbols.forEach(el => el.innerText = '$');
-        } else {
-            // Por defecto Euro
-            currencySymbols.forEach(el => el.innerText = '€');
         }
 
-        // 3. SCROLL SUAVE AL PRECIO
+        // 3. SCROLL SUAVE
         function scrollToPricing() {
             document.getElementById('pricing').scrollIntoView({ behavior: 'smooth' });
         }
 
-        // 4. ANIMACIONES INTELIGENTES (Intersection Observer)
-        
-        // A) Botón Flotante: Se oculta cuando ves el precio
+        // 4. GRÁFICO INTERACTIVO (CHART.JS)
+        const ctx = document.getElementById('vintedChart').getContext('2d');
+        const vintedChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Manual', 'Vinted Injector'],
+                datasets: [{
+                    label: 'Visitas',
+                    data: [30, 150],
+                    backgroundColor: ['#d1d8e0', '#008cff'], 
+                    borderRadius: 12,
+                    borderSkipped: false,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: '#0f172a',
+                        titleFont: { size: 16 },
+                        bodyFont: { size: 14 },
+                        padding: 12,
+                        cornerRadius: 10,
+                        displayColors: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 180,
+                        grid: { color: '#f1f5f9' },
+                        ticks: { font: { weight: 'bold' } }
+                    },
+                    x: {
+                        grid: { display: false },
+                        ticks: { font: { size: 14, weight: 'bold' }, color: '#0f172a' }
+                    }
+                }
+            }
+        });
+
+        // 5. INTERSECTION OBSERVER PARA EL BOTÓN FLOTANTE
         const pricingSection = document.getElementById('pricing');
         const floatBtn = document.getElementById('floating-cta');
-        const salesChart = document.getElementById('salesChart');
-
-        const observerOptions = {
-            root: null,
-            threshold: 0.1 // Cuando se vea un 10% de la sección
-        };
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                // Lógica del Botón Flotante
-                if (entry.target.id === 'pricing') {
-                    if (entry.isIntersecting) {
-                        floatBtn.classList.remove('visible'); // Ocultar si vemos el precio
-                    } else {
-                        floatBtn.classList.add('visible'); // Mostrar si salimos del precio
-                    }
-                }
-                
-                // Lógica de la Gráfica
-                if (entry.target.id === 'salesChart' && entry.isIntersecting) {
-                    salesChart.classList.add('animate-chart');
+                if (entry.isIntersecting) {
+                    floatBtn.classList.remove('visible');
+                } else {
+                    floatBtn.classList.add('visible');
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1 });
 
         observer.observe(pricingSection);
-        observer.observe(salesChart);
-
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<script>
-    const ctx = document.getElementById('vintedChart').getContext('2d');
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Manual', 'Vinted Injector'],
-            datasets: [{
-                label: 'Visitas',
-                data: [30, 150], // Los datos de tu imagen original
-                backgroundColor: ['#d1d8e0', '#008cff'], // Gris vs el Azul de tu nuevo logo
-                borderRadius: 10,
-                borderSkipped: false,
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: { display: false }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    grid: { display: false },
-                    ticks: { font: { weight: 'bold' } }
-                },
-                x: {
-                    grid: { display: false },
-                    ticks: { font: { size: 14, weight: 'bold' }, color: '#002d4b' }
-                }
-            },
-            animation: {
-                duration: 2500,
-                easing: 'easeOutQuart'
-            }
-        }
-    });
-</script>
 </body>
 </html>
