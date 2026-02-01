@@ -3,202 +3,378 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vinted Pro Seller - Planes</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <title>Vinted Pro Seller - Automatiza tu éxito</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet">
     
     <style>
-        /* --- VARIABLES GLOBALES Y RESET --- */
+        /* --- VARIABLES & CONFIGURACIÓN --- */
         :root {
-            --primary-color: #0f172a;
-            --accent-color: #0077ff;
-            --accent-hover: #005ecb;
-            --bg-light: #f8fafc;
-            --text-gray: #64748b;
-            --success: #22c55e;
+            --primary: #0f172a;
+            --accent: #0077ff;
+            --accent-glow: rgba(0, 119, 255, 0.5);
+            --bg-light: #f1f5f9;
+            --success: #10b981;
+            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        html {
+            scroll-behavior: smooth; /* Desplazamiento suave nativo */
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            color: var(--primary-color);
-            background-color: white;
+            font-family: 'Outfit', sans-serif;
+            color: var(--primary);
+            background: #fff;
+            overflow-x: hidden;
         }
 
-        /* --- UTILIDADES --- */
-        .container {
-            width: 90%;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 3rem;
-            font-weight: 800;
-        }
-
-        /* --- BOTONES --- */
+        /* --- BOTONES Y UTILIDADES --- */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
         .btn {
             display: inline-block;
-            padding: 12px 24px;
+            padding: 14px 32px;
             border-radius: 50px;
             text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
+            font-weight: 700;
+            transition: var(--transition);
             border: none;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 1.1rem;
+            box-shadow: 0 10px 20px -10px var(--accent-glow);
         }
 
         .btn-primary {
-            background-color: var(--accent-color);
+            background: linear-gradient(135deg, var(--accent), #00c6ff);
             color: white;
-            box-shadow: 0 4px 14px rgba(0, 119, 255, 0.3);
         }
 
         .btn-primary:hover {
-            background-color: var(--accent-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 119, 255, 0.4);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 20px 30px -10px var(--accent-glow);
         }
 
-        .btn-block {
-            display: block;
-            width: 100%;
+        /* --- BOTÓN FLOTANTE (Magic Button) --- */
+        #floating-cta {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            padding: 15px 30px;
+            border-radius: 50px;
+            background: var(--primary);
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            opacity: 0; /* Empieza invisible */
+            transform: translateY(50px);
+            transition: var(--transition);
+            pointer-events: none; /* No clickeable si invisible */
+        }
+
+        /* Clase para mostrar el botón */
+        #floating-cta.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: all;
+        }
+
+        /* --- HEADER & HERO --- */
+        nav { padding: 20px 0; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.8rem; font-weight: 900; letter-spacing: -1px; }
+        .logo span { color: var(--accent); }
+
+        .hero {
+            padding: 80px 0;
             text-align: center;
+            background: radial-gradient(circle at center, #f0f9ff 0%, #fff 70%);
         }
-
-        /* --- NAVBAR --- */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem 0;
-        }
-
-        .logo { font-size: 1.5rem; font-weight: 800; }
         
-        .highlight {
-            color: var(--accent-color);
-            background: linear-gradient(90deg, var(--accent-color), #00c6ff);
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            line-height: 1.1;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        /* --- PRICING SECTION (Tu tarjeta azul) --- */
-        .pricing-section {
-            padding: 5rem 0;
-            background-color: var(--bg-light);
-            min-height: 80vh; /* Para que ocupe casi toda la pantalla */
+        .hero p { font-size: 1.3rem; color: #64748b; max-width: 600px; margin: 0 auto 40px; }
+
+        /* --- GRÁFICA ANIMADA --- */
+        .stats-section { padding: 60px 0; background: #fff; }
+        .chart-container {
             display: flex;
-            flex-direction: column;
             justify-content: center;
+            align-items: flex-end;
+            height: 300px;
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .bar-group { text-align: center; width: 120px; position: relative; }
+        .bar {
+            width: 100%;
+            border-radius: 15px 15px 0 0;
+            transition: height 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+            height: 0; /* Empieza en 0 para animar */
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 10px;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .bar-old { background: #cbd5e1; height: 30%; } /* Altura fija visual */
+        
+        /* Esta es la barra que crecerá */
+        .bar-new { 
+            background: linear-gradient(to top, var(--accent), #60a5fa); 
+            box-shadow: 0 0 20px var(--accent-glow);
         }
 
-        .pricing-wrapper {
-            display: flex;
-            justify-content: center;
+        /* Animación de entrada */
+        .animate-chart .bar-new { height: 85% !important; }
+
+        /* --- CÓMO FUNCIONA (STEPS) --- */
+        .steps { padding: 80px 0; background: var(--bg-light); }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        
+        .step-card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            transition: var(--transition);
+        }
+        .step-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.05); }
+        .icon { font-size: 3rem; margin-bottom: 20px; display: block; }
+
+        /* --- ROADMAP Y PLATAFORMAS --- */
+        .info-grid { padding: 80px 0; display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
+        @media (max-width: 768px) { .info-grid { grid-template-columns: 1fr; } }
+        
+        .platform-badge {
+            display: inline-flex;
+            align-items: center;
+            background: #fff;
+            padding: 10px 20px;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+            font-weight: bold;
+            color: #09b1ba; /* Vinted color */
+        }
+
+        /* --- PRICING (ZONA DE PAGO) --- */
+        #pricing {
+            padding: 100px 0;
+            background: linear-gradient(to bottom, white, #f0f9ff);
+            text-align: center;
         }
 
         .pricing-card {
             background: white;
-            padding: 3rem;
-            border-radius: 24px;
-            width: 100%;
-            max-width: 450px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 50px;
+            border-radius: 30px;
+            max-width: 480px;
+            margin: 0 auto;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+            border: 2px solid var(--accent);
             position: relative;
-            border: 2px solid var(--accent-color); /* Borde azul activado */
+            overflow: hidden;
         }
 
-        .popular-badge {
+        .popular-tag {
+            background: var(--accent);
+            color: white;
+            padding: 5px 20px;
             position: absolute;
-            top: -15px;
+            top: 0;
             left: 50%;
             transform: translateX(-50%);
-            background-color: var(--accent-color);
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 800;
-        }
-
-        .plan-name { font-size: 1.5rem; font-weight: 700; text-align: center; margin-bottom: 1rem;}
-
-        .price {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin: 1rem 0;
-            text-align: center;
-        }
-
-        .period {
-            font-size: 1.2rem;
-            color: var(--text-gray);
-            font-weight: 400;
-        }
-
-        .features-list {
-            list-style: none;
-            margin: 2rem 0;
-            text-align: left;
-        }
-
-        .features-list li {
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            font-size: 1.1rem;
-        }
-
-        .cancel-anytime {
-            text-align: center;
+            border-radius: 0 0 15px 15px;
+            font-weight: bold;
             font-size: 0.9rem;
-            color: var(--text-gray);
-            margin-top: 1rem;
         }
+
+        .price-tag { font-size: 4.5rem; font-weight: 900; margin: 20px 0; color: var(--primary); }
+        .currency { font-size: 2.5rem; vertical-align: super; }
+        .period { font-size: 1rem; color: #64748b; font-weight: normal; }
+
+        .features-list { list-style: none; text-align: left; margin: 30px 0; }
+        .features-list li { padding: 10px 0; border-bottom: 1px solid #f1f5f9; display: flex; align-items: center; }
+        .check { color: var(--success); margin-right: 10px; font-weight: bold; }
+
     </style>
 </head>
 <body>
 
-    <nav class="navbar container">
-        <div class="logo">Vinted<span class="highlight">Pro</span></div>
+    <nav class="container">
+        <div class="logo">Vinted<span>Pro</span></div>
+        <a href="https://vinted.es" target="_blank" style="text-decoration:none; color: var(--primary); font-weight:600;">Ir a Vinted ↗</a>
     </nav>
 
-    <section class="pricing-section">
-        <div class="container">
-            <h2 class="section-title">Mejora tus ventas hoy</h2>
-            
-            <div class="pricing-wrapper">
-                <div class="pricing-card">
-                    <div class="popular-badge">MÁS POPULAR</div>
-                    
-                    <h3 class="plan-name">Plan Mensual</h3>
-                    <div class="price">9.99€<span class="period">/mes</span></div>
-                    
-                    <ul class="features-list">
-                        <li>✅ Optimización ilimitada</li>
-                        <li>📸 Análisis de fotos (Próximamente)</li>
-                        <li>🚀 Soporte 24/7</li>
-                    </ul>
+    <header class="hero container">
+        <h1>Vende más rápido.<br>Sin esfuerzo.</h1>
+        <p>La primera extensión con Inteligencia Artificial que redacta tus anuncios de Vinted por ti. Títulos magnéticos y descripciones que convierten.</p>
+        <button onclick="scrollToPricing()" class="btn btn-primary">Empezar ahora 🚀</button>
+    </header>
 
-                    <button id="checkout-button" class="btn btn-primary btn-block">CONTRATAR AHORA</button>
-                    <p class="cancel-anytime">Cancela cuando quieras.</p>
+    <section class="stats-section">
+        <div class="container" style="text-align: center;">
+            <h2>Resultados Reales</h2>
+            <p>Promedio de visitas en las primeras 24h</p>
+            
+            <div class="chart-container" id="salesChart">
+                <div class="bar-group">
+                    <div class="bar bar-old" style="height: 30%;">
+                        <span>30 visitas</span>
+                    </div>
+                    <p style="margin-top:10px; font-weight:600;">Manual</p>
+                </div>
+                <div class="bar-group">
+                    <div class="bar bar-new">
+                        <span>+150 visitas</span>
+                    </div>
+                    <p style="margin-top:10px; font-weight:bold; color:var(--accent);">Con IA Pro</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <script>
-        document.getElementById('checkout-button').addEventListener('click', () => {
-            // ¡IMPORTANTE! Cambia esto por tu enlace real de Stripe
-            window.location.href = 'https://buy.stripe.com/TU_ENLACE_AQUI'; 
-        });
-    </script>
+    <section class="steps">
+        <div class="container">
+            <h2 style="text-align:center; margin-bottom:50px; font-size:2.5rem;">Tan fácil como 1-2-3</h2>
+            <div class="grid-3">
+                <div class="step-card">
+                    <span class="icon">📸</span>
+                    <h3>1. Sube tu foto</h3>
+                    <p>Entra a Vinted y sube la foto de tu artículo. Nuestra extensión detectará que estás vendiendo.</p>
+                </div>
+                <div class="step-card">
+                    <span class="icon">✨</span>
+                    <h3>2. Click Mágico</h3>
+                    <p>Pulsa el botón "Mejorar con IA". Analizaremos el producto para crear el texto perfecto.</p>
+                </div>
+                <div class="step-card">
+                    <span class="icon">💰</span>
+                    <h3>3. Vende</h3>
+                    <p>Publica con un título SEO optimizado y espera a que lleguen los compradores.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <section class="container info-grid">
+        <div>
+            <h2>Plataformas Soportadas</h2>
+            <p style="margin-bottom: 20px; color:#64748b;">Trabajamos constantemente para evitar baneos y mejorar la compatibilidad.</p>
+            <div class="platform-badge">✅ Vinted (España/Francia)</div>
+            <div class="platform-badge" style="margin-top:10px; opacity:0.5; border-style:dashed;">🔜 Wallapop (Próximamente)</div>
+        </div>
+        <div>
+            <h2>Roadmap & Actualizaciones</h2>
+            <ul style="list-style:none; margin-top:10px;">
+                <li style="margin-bottom:10px;">🚀 <strong>v1.0:</strong> Generador de Texto (Activo)</li>
+                <li style="margin-bottom:10px;">👁️ <strong>v2.0:</strong> Análisis de imagen (En desarrollo)</li>
+                <li style="margin-bottom:10px;">🌍 <strong>v3.0:</strong> Traducción automática multi-idioma</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="pricing">
+        <div class="container">
+            <h2 style="margin-bottom: 20px;">Invierte en tu armario</h2>
+            <div class="pricing-card">
+                <div class="popular-tag">OFERTA LANZAMIENTO</div>
+                <h3>Plan Pro Mensual</h3>
+                
+                <div class="price-tag">
+                    <span class="currency-symbol">€</span>7.59<span class="period">/mes</span>
+                </div>
+                
+                <p style="color: #64748b;">Recuperas la inversión con tu primera venta extra.</p>
+                
+                <ul class="features-list">
+                    <li><span class="check">✓</span> Generación ilimitada de Títulos</li>
+                    <li><span class="check">✓</span> Generación ilimitada de Descripciones</li>
+                    <li><span class="check">✓</span> Soporte Anti-Ban</li>
+                    <li><span class="check">✓</span> Actualizaciones automáticas</li>
+                </ul>
+
+                <button id="stripe-button" class="btn btn-primary" style="width:100%;">CONTRATAR AHORA</button>
+                <p style="font-size:0.8rem; margin-top:15px; color:#94a3b8;">Pago seguro vía Stripe. Cancela cuando quieras.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer style="text-align:center; padding: 40px; color: #94a3b8; font-size: 0.9rem;">
+        <p>&copy; 2024 Vinted Pro Tools. No afiliado oficialmente a Vinted.</p>
+    </footer>
+
+    <a href="javascript:scrollToPricing()" id="floating-cta">
+        Contratar Plan Pro 🚀
+    </a>
+
+    <script>
+        // 1. CONFIGURACIÓN DE STRIPE
+        document.getElementById('stripe-button').addEventListener('click', () => {
+            // ¡PON AQUÍ TU ENLACE DE STRIPE!
+            window.location.href = 'https://buy.stripe.com/PON_TU_LINK_AQUI';
+        });
+
+        // 2. DETECCIÓN DE MONEDA (Automática)
+        const userLang = navigator.language || navigator.userLanguage;
+        const currencySymbols = document.querySelectorAll('.currency-symbol');
+        
+        if (userLang.includes('en') || userLang.includes('US')) {
+            // Si el usuario parece ser de USA/UK, cambiamos a $
+            currencySymbols.forEach(el => el.innerText = '$');
+        } else {
+            // Por defecto Euro
+            currencySymbols.forEach(el => el.innerText = '€');
+        }
+
+        // 3. SCROLL SUAVE AL PRECIO
+        function scrollToPricing() {
+            document.getElementById('pricing').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // 4. ANIMACIONES INTELIGENTES (Intersection Observer)
+        
+        // A) Botón Flotante: Se oculta cuando ves el precio
+        const pricingSection = document.getElementById('pricing');
+        const floatBtn = document.getElementById('floating-cta');
+        const salesChart = document.getElementById('salesChart');
+
+        const observerOptions = {
+            root: null,
+            threshold: 0.1 // Cuando se vea un 10% de la sección
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                // Lógica del Botón Flotante
+                if (entry.target.id === 'pricing') {
+                    if (entry.isIntersecting) {
+                        floatBtn.classList.remove('visible'); // Ocultar si vemos el precio
+                    } else {
+                        floatBtn.classList.add('visible'); // Mostrar si salimos del precio
+                    }
+                }
+                
+                // Lógica de la Gráfica
+                if (entry.target.id === 'salesChart' && entry.isIntersecting) {
+                    salesChart.classList.add('animate-chart');
+                }
+            });
+        }, observerOptions);
+
+        observer.observe(pricingSection);
+        observer.observe(salesChart);
+
+    </script>
 </body>
 </html>
