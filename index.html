@@ -245,27 +245,40 @@
 
     <section id="pricing">
         <div class="container">
-            <h2 style="margin-bottom: 20px;">Invierte en tu armario</h2>
-            <div class="pricing-card">
-                <div class="popular-tag">OFERTA LANZAMIENTO</div>
-                <h3>Plan Injector Mensual</h3>
+            <h2 style="margin-bottom: 40px;">Invierte en tu armario</h2>
+            
+            <div style="display: flex; gap: 30px; justify-content: center; flex-wrap: wrap; align-items: flex-start;">
                 
-                <div class="price-tag">
-                    <span class="currency-symbol">€</span>7.59<span class="period">/mes</span>
+                <div class="pricing-card" style="margin: 0; border: 1px solid #e2e8f0; flex: 1; max-width: 400px;">
+                    <h3>Plan Mensual</h3>
+                    <div class="price-tag">
+                        <span class="currency-symbol">€</span>7.59<span class="period">/mes</span>
+                    </div>
+                    <ul class="features-list">
+                        <li><span class="check">✓</span> Acceso Completo IA</li>
+                        <li><span class="check">✓</span> Soporte Anti-Ban</li>
+                        <li><span class="check">✓</span> Cancela cuando quieras</li>
+                    </ul>
+                    <button onclick="window.location.href='https://buy.stripe.com/TU_LINK_MENSUAL'" class="btn" style="width:100%; background: #0f172a; color: white;">ELEGIR MENSUAL</button>
                 </div>
-                
-                <p style="color: #64748b;">Recuperas la inversión con tu primera venta extra.</p>
-                
-                <ul class="features-list">
-                    <li><span class="check">✓</span> Generación ilimitada de Títulos</li>
-                    <li><span class="check">✓</span> Generación ilimitada de Descripciones</li>
-                    <li><span class="check">✓</span> Soporte Anti-Ban</li>
-                    <li><span class="check">✓</span> Actualizaciones automáticas</li>
-                </ul>
 
-                <button id="stripe-button" class="btn btn-primary" style="width:100%;">CONTRATAR AHORA</button>
-                <p style="font-size:0.8rem; margin-top:15px; color:#94a3b8;">Pago seguro vía Stripe. Cancela cuando quieras.</p>
+                <div class="pricing-card" style="margin: 0; border: 3px solid var(--accent); flex: 1; max-width: 400px; transform: scale(1.05); z-index: 10;">
+                    <div class="popular-tag">AHORRA 35%</div>
+                    <h3>Plan Anual</h3>
+                    <div class="price-tag">
+                        <span class="currency-symbol">€</span>59.90<span class="period">/año</span>
+                    </div>
+                    <p style="color: var(--success); font-weight: bold; margin-bottom: 10px;">Equivale a 4,99€/mes</p>
+                    <ul class="features-list">
+                        <li><span class="check">✓</span> Todo lo del Plan Mensual</li>
+                        <li><span class="check">✓</span> Actualizaciones Prioritarias</li>
+                        <li><span class="check">✓</span> 4 Meses Gratis Incluidos</li>
+                    </ul>
+                    <button onclick="window.location.href='https://buy.stripe.com/TU_LINK_ANUAL'" class="btn btn-primary" style="width:100%;">ELEGIR ANUAL 🚀</button>
+                </div>
+
             </div>
+            <p style="font-size:0.8rem; margin-top:30px; color:#94a3b8; text-align:center;">Pago seguro vía Stripe. Cancela cuando quieras.</p>
         </div>
     </section>
 
