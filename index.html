@@ -11,7 +11,7 @@
         /* --- VARIABLES & CONFIGURACIÓN --- */
         :root {
             --primary: #0f172a;
-            --accent: #008cff; /* Azul ajustado a tu nuevo logo */
+            --accent: #008cff; 
             --accent-glow: rgba(0, 140, 255, 0.4);
             --bg-light: #f1f5f9;
             --success: #10b981;
@@ -30,6 +30,7 @@
 
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
         
+        /* --- BOTONES --- */
         .btn {
             display: inline-block;
             padding: 14px 32px;
@@ -40,12 +41,13 @@
             border: none;
             cursor: pointer;
             font-size: 1.1rem;
-            box-shadow: 0 10px 20px -10px var(--accent-glow);
+            text-align: center;
         }
 
         .btn-primary {
             background: linear-gradient(135deg, var(--accent), #00c6ff);
             color: white;
+            box-shadow: 0 10px 20px -10px var(--accent-glow);
         }
 
         .btn-primary:hover {
@@ -53,31 +55,19 @@
             box-shadow: 0 20px 30px -10px var(--accent-glow);
         }
 
-        #floating-cta {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 1000;
-            padding: 15px 30px;
-            border-radius: 50px;
-            background: var(--primary);
+        .btn-secondary {
+            background: #0f172a;
             color: white;
-            font-weight: bold;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            opacity: 0;
-            transform: translateY(50px);
-            transition: var(--transition);
-            pointer-events: none;
-            text-decoration: none;
+            border: 2px solid transparent;
         }
 
-        #floating-cta.visible {
-            opacity: 1;
-            transform: translateY(0);
-            pointer-events: all;
+        .btn-secondary:hover {
+            background: #1e293b;
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(15, 23, 42, 0.2);
         }
 
-        /* --- HEADER & HERO --- */
+        /* --- NAVEGACIÓN & HERO --- */
         nav { padding: 20px 0; display: flex; justify-content: space-between; align-items: center; }
         .logo { font-size: 1.8rem; font-weight: 900; letter-spacing: -1px; }
         .logo span { color: var(--accent); }
@@ -99,7 +89,7 @@
 
         .hero p { font-size: 1.3rem; color: #64748b; max-width: 600px; margin: 0 auto 40px; }
 
-        /* --- GRÁFICA INTERACTIVA --- */
+        /* --- GRÁFICA --- */
         .stats-section { padding: 60px 0; background: #fff; }
         .chart-wrapper {
             max-width: 600px;
@@ -135,6 +125,7 @@
             border: 1px solid #e2e8f0;
             font-weight: bold;
             color: #09b1ba;
+            margin-right: 10px;
         }
 
         /* --- PRICING --- */
@@ -148,12 +139,12 @@
             background: white;
             padding: 50px;
             border-radius: 30px;
-            max-width: 480px;
-            margin: 0 auto;
             box-shadow: 0 30px 60px rgba(0,0,0,0.1);
-            border: 2px solid var(--accent);
             position: relative;
             overflow: hidden;
+            flex: 1;
+            max-width: 400px;
+            transition: var(--transition);
         }
 
         .popular-tag {
@@ -169,14 +160,37 @@
             font-size: 0.9rem;
         }
 
-        .price-tag { font-size: 4.5rem; font-weight: 900; margin: 20px 0; color: var(--primary); }
-        .currency { font-size: 2.5rem; vertical-align: super; }
+        .price-tag { font-size: 4rem; font-weight: 900; margin: 20px 0; color: var(--primary); }
         .period { font-size: 1rem; color: #64748b; font-weight: normal; }
 
         .features-list { list-style: none; text-align: left; margin: 30px 0; }
         .features-list li { padding: 10px 0; border-bottom: 1px solid #f1f5f9; display: flex; align-items: center; }
         .check { color: var(--success); margin-right: 10px; font-weight: bold; }
 
+        /* --- FLOATING CTA --- */
+        #floating-cta {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            padding: 15px 30px;
+            border-radius: 50px;
+            background: var(--primary);
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: var(--transition);
+            pointer-events: none;
+            text-decoration: none;
+        }
+
+        #floating-cta.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: all;
+        }
     </style>
 </head>
 <body>
@@ -196,7 +210,6 @@
         <div class="container" style="text-align: center;">
             <h2>Resultados Reales</h2>
             <p>Promedio de visitas en las primeras 24h</p>
-            
             <div class="chart-wrapper">
                 <canvas id="vintedChart"></canvas>
             </div>
@@ -247,9 +260,9 @@
         <div class="container">
             <h2 style="margin-bottom: 40px;">Invierte en tu armario</h2>
             
-            <div style="display: flex; gap: 30px; justify-content: center; flex-wrap: wrap; align-items: flex-start;">
+            <div style="display: flex; gap: 30px; justify-content: center; flex-wrap: wrap; align-items: stretch;">
                 
-                <div class="pricing-card" style="margin: 0; border: 1px solid #e2e8f0; flex: 1; max-width: 400px;">
+                <div class="pricing-card" style="border: 1px solid #e2e8f0;">
                     <h3>Plan Mensual</h3>
                     <div class="price-tag">
                         <span class="currency-symbol">€</span>7.59<span class="period">/mes</span>
@@ -259,10 +272,10 @@
                         <li><span class="check">✓</span> Soporte Anti-Ban</li>
                         <li><span class="check">✓</span> Cancela cuando quieras</li>
                     </ul>
-                    <button onclick="window.location.href='https://buy.stripe.com/TU_LINK_MENSUAL'" class="btn" style="width:100%; background: #0f172a; color: white;">ELEGIR MENSUAL</button>
+                    <button onclick="handleSubscription('https://buy.stripe.com/TU_LINK_MENSUAL')" class="btn btn-secondary" style="width:100%;">ELEGIR MENSUAL</button>
                 </div>
 
-                <div class="pricing-card" style="margin: 0; border: 3px solid var(--accent); flex: 1; max-width: 400px; transform: scale(1.05); z-index: 10;">
+                <div class="pricing-card" style="border: 3px solid var(--accent); transform: scale(1.05); z-index: 10;">
                     <div class="popular-tag">AHORRA 35%</div>
                     <h3>Plan Anual</h3>
                     <div class="price-tag">
@@ -274,11 +287,11 @@
                         <li><span class="check">✓</span> Actualizaciones Prioritarias</li>
                         <li><span class="check">✓</span> 4 Meses Gratis Incluidos</li>
                     </ul>
-                    <button onclick="window.location.href='https://buy.stripe.com/TU_LINK_ANUAL'" class="btn btn-primary" style="width:100%;">ELEGIR ANUAL 🚀</button>
+                    <button onclick="handleSubscription('https://buy.stripe.com/TU_LINK_ANUAL')" class="btn btn-primary" style="width:100%;">ELEGIR ANUAL 🚀</button>
                 </div>
 
             </div>
-            <p style="font-size:0.8rem; margin-top:30px; color:#94a3b8; text-align:center;">Pago seguro vía Stripe. Cancela cuando quieras.</p>
+            <p style="font-size:0.8rem; margin-top:30px; color:#94a3b8;">Pago seguro vía Stripe. Cancela cuando quieras.</p>
         </div>
     </section>
 
@@ -286,87 +299,87 @@
         <p>&copy; 2026 Vinted Injector Tools. No afiliado oficialmente a Vinted.</p>
     </footer>
 
-    <a href="javascript:scrollToPricing()" id="floating-cta">
-        Contratar Plan Injector 🚀
-    </a>
+    <a href="javascript:scrollToPricing()" id="floating-cta">Contratar Plan Injector 🚀</a>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    
     <script>
-        // 1. CONFIGURACIÓN DE STRIPE
-        document.getElementById('stripe-button').addEventListener('click', () => {
-            window.location.href = 'https://buy.stripe.com/test_3cIcN49l50bz4sS9g03cc00';
-        });
+        // 1. FUNCIÓN DE SUSCRIPCIÓN CON CONFETI
+        function handleSubscription(url) {
+            // Disparar confeti
+            confetti({
+                particleCount: 150,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#008cff', '#0f172a', '#10b981']
+            });
 
-        // 2. DETECCIÓN DE MONEDA
-        const userLang = navigator.language || navigator.userLanguage;
-        const currencySymbols = document.querySelectorAll('.currency-symbol');
-        if (userLang.includes('en') || userLang.includes('US')) {
-            currencySymbols.forEach(el => el.innerText = '$');
+            // Redirigir después de un pequeño delay para que se vea el confeti
+            setTimeout(() => {
+                window.location.href = url;
+            }, 800);
         }
 
-        // 3. SCROLL SUAVE
+        // 2. SCROLL SUAVE
         function scrollToPricing() {
             document.getElementById('pricing').scrollIntoView({ behavior: 'smooth' });
         }
 
-        // 4. GRÁFICO INTERACTIVO (CHART.JS)
-        const ctx = document.getElementById('vintedChart').getContext('2d');
-        const vintedChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Manual', 'Vinted Injector'],
-                datasets: [{
-                    label: 'Visitas',
-                    data: [30, 150],
-                    backgroundColor: ['#d1d8e0', '#008cff'], 
-                    borderRadius: 12,
-                    borderSkipped: false,
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: true,
-                plugins: {
-                    legend: { display: false },
-                    tooltip: {
-                        backgroundColor: '#0f172a',
-                        titleFont: { size: 16 },
-                        bodyFont: { size: 14 },
-                        padding: 12,
-                        cornerRadius: 10,
-                        displayColors: false
-                    }
+        // 3. INICIALIZACIÓN DEL GRÁFICO
+        const initChart = () => {
+            const canvas = document.getElementById('vintedChart');
+            if (!canvas) return;
+
+            const ctx = canvas.getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Manual', 'Vinted Injector'],
+                    datasets: [{
+                        label: 'Visitas',
+                        data: [30, 150],
+                        backgroundColor: ['#cbd5e1', '#008cff'], 
+                        borderRadius: 10,
+                        borderSkipped: false,
+                    }]
                 },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        max: 180,
-                        grid: { color: '#f1f5f9' },
-                        ticks: { font: { weight: 'bold' } }
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { beginAtZero: true, max: 180, grid: { color: '#f1f5f9' } },
+                        x: { grid: { display: false }, ticks: { font: { weight: 'bold', size: 14 } } }
                     },
-                    x: {
-                        grid: { display: false },
-                        ticks: { font: { size: 14, weight: 'bold' }, color: '#0f172a' }
-                    }
-                }
-            }
-        });
-
-        // 5. INTERSECTION OBSERVER PARA EL BOTÓN FLOTANTE
-        const pricingSection = document.getElementById('pricing');
-        const floatBtn = document.getElementById('floating-cta');
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    floatBtn.classList.remove('visible');
-                } else {
-                    floatBtn.classList.add('visible');
+                    animation: { duration: 2000, easing: 'easeOutQuart' }
                 }
             });
-        }, { threshold: 0.1 });
+        };
 
-        observer.observe(pricingSection);
+        // 4. CONTROL DEL BOTÓN FLOTANTE (OBSERVER)
+        const initObserver = () => {
+            const pricingSection = document.getElementById('pricing');
+            const floatBtn = document.getElementById('floating-cta');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        floatBtn.classList.remove('visible');
+                    } else {
+                        floatBtn.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            if (pricingSection) observer.observe(pricingSection);
+        };
+
+        // Cargar todo al iniciar
+        window.onload = () => {
+            initChart();
+            initObserver();
+        };
     </script>
 </body>
 </html>
